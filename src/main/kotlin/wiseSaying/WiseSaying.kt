@@ -1,12 +1,14 @@
 package wiseSaying
 
 data class WiseSaying(
-    val id : Int,
+    var id: Int = 0,
     var content: String,
-    var author : String
+    var author: String
 ) {
-    fun modify(content: String, author : String) {
+    fun modify(content: String, author: String) {
         this.content = content
-        this.author  = author
+        this.author = author
     }
+
+    fun isNew() = id == 0
 }
