@@ -9,7 +9,7 @@ class App {
         println("== 명언 앱 ==")
 
         while (true) {
-            print("명령) " )
+            print("명령) ")
 
             val input = readln()
             val rq = Rq(input)
@@ -37,18 +37,32 @@ class App {
                     println("번호 / 작가 / 명언")
                     println("-".repeat(30))
                     wiseSayings.reversed().forEach {
-                        println("${it.id} / ${it.author} / ${it.content}")
+                        println("${it.id}/ ${it.author} / ${it.content}")
                     }
                 }
 
                 "삭제" -> {  //삭제?id=1
                     val id = rq.getParamAsInt("id", 0)
 
-                    wiseSayings.removeIf {
-                        it.id == id
+                    if (id == 0) {
+                        println("id를 입력해주세요.")
+                        continue
                     }
 
+//                    wiseSayings.removeIf {
+//                        it.id == id
+//                    }
+
+                    wiseSayings
+                        .firstOrNull {
+                            it.id == id
+                        }
+                        ?.let {
+                            wiseSayings.remove(it)
+                        }
+
                     println("${id}번 명언이 삭제되었습니다.")
+
                 }
             }
         }
